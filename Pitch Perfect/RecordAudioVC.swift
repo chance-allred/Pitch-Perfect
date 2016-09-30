@@ -59,7 +59,7 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
             
             recording = true // Start Recording
             recordButton.setTitle("Stop", for: .normal)
-            recordButton.backgroundColor = UIColor(red:1.00, green:0.17, blue:0.18, alpha:1.00)
+            recordButton.backgroundColor = UIColor(red:1.00, green:0.15, blue:0.37, alpha:1.00)
             
             startRecording() // Starts the recording of audio
             
@@ -104,7 +104,8 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
         
         // Ensures recording has finished and saved before segue
         if flag {
-            performSegue(withIdentifier: "useRecordingSegue", sender: nil)
+            // .url is stored recording sent to prepare for segue.
+            performSegue(withIdentifier: "useRecordingSegue", sender: audioRecorder.url)
             print("AVAudioRecorder has finished recording")
         } else {
             print("Audio recording failed to save")
@@ -141,13 +142,14 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
     }
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "useRecordingSegue") {
-//            let playSoundsVC = segue.destination as! PlaySoundsVC
-//            let recordedAudioURL = sender as! NSURL
-//            playSoundsVC.recordedAudioURL = recordedAudioURL
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "useRecordingSegue") {
+            let playSoundsVC = segue.destination as! PlaySoundsVC
+            
+            let recordedAudio = sender as! NSURL
+            playSoundsVC.recordedAudioURL = recordedAudio
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {
