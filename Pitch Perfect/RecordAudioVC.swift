@@ -12,11 +12,12 @@ import AVFoundation // Library for AVAudioRecorder
 class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
 
     // MARK: Properties
-    var recording = Bool() // Determine if recording or not
+    var recording = false // Determine if recording or not
     var audioRecorder: AVAudioRecorder!
     
     
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var animationImageView: UIImageView!
     
     
     // MARK: Functions
@@ -25,29 +26,37 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupRecordButton()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func setupRecordButton() {
-        // Round edges of button
-        recordButton.layer.cornerRadius = 5
-        recordButton.clipsToBounds = true
-        recording = false // Not recording at launch
+        
+        /* Solution to bug: LayoutSubviews was causing bugs & cornerRadius woulden't work any other way. 
+         DispatchQueue seemed to be the solution.
+         */
+        DispatchQueue.main.async {
+            // Round edges of button
+            self.recordButton.layer.cornerRadius = 0.5 * self.recordButton.bounds.size.width
+            self.recordButton.layer.masksToBounds = true
+            self.recording = false // Not recording at launch
+        }
     }
     
     @IBAction func recordAudio(_ sender: AnyObject) {
         print("Record Button Pressed")
-        
-        // Animated Button Press. Code Complements: nRewik @ StackOverflow
-        UIView.animate(withDuration: 0.2 , animations: {
-            self.recordButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            }, completion: { finish in UIView.animate(withDuration: 0.9){
-            self.recordButton.transform = CGAffineTransform.identity
-            }
-        })
+        animateButtonPress()
         
         if !recording {
             print("Recording")
+            loadAnimation()
+            
             recording = true // Start Recording
             recordButton.setTitle("Stop", for: .normal)
             recordButton.backgroundColor = UIColor(red:1.00, green:0.17, blue:0.18, alpha:1.00)
@@ -56,6 +65,8 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
             
         } else {
             print("Stopped")
+            stopAnimation()
+            
             recording = false // Stop Recording
             recordButton.setTitle("Record", for: .normal)
             recordButton.backgroundColor = UIColor(red:0.38, green:0.78, blue:0.58, alpha:1.00)
@@ -100,8 +111,36 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    func animateButtonPress() {
+        // Animated Button Press. Code Complements: nRewik @ StackOverflow
+        UIView.animate(withDuration: 0.2 , animations: {
+            self.recordButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: { finish in UIView.animate(withDuration: 0.9){
+                self.recordButton.transform = CGAffineTransform.identity
+                }
+        })
+    }
     
-   
+    func loadAnimation() {
+        var imgListArray = [UIImage]()
+        for countValue in 1...20
+        {
+            
+            let strImageName : String = "circle_\(countValue).png"
+            let image  = UIImage(named:strImageName)
+            imgListArray.append(image!)
+        }
+        
+        self.animationImageView.animationImages = imgListArray
+        self.animationImageView.animationDuration = 1.0
+        self.animationImageView.startAnimating()
+    }
+    
+    func stopAnimation() {
+        self.animationImageView.stopAnimating()
+    }
+    
+    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if (segue.identifier == "useRecordingSegue") {
 //            let playSoundsVC = segue.destination as! PlaySoundsVC

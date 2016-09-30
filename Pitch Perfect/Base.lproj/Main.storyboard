@@ -18,10 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nyj-rJ-2W8"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0w-M5-mgR">
                                 <color key="backgroundColor" red="0.37647058820000001" green="0.77647058820000003" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="9qg-rw-wb2"/>
+                                    <constraint firstAttribute="height" constant="100" id="fkZ-lt-CNS"/>
+                                    <constraint firstAttribute="width" constant="100" id="np0-Cb-8Fh"/>
                                 </constraints>
                                 <state key="normal" title="Record">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,12 +35,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="V0w-M5-mgR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W00-r0-6Tt"/>
-                            <constraint firstItem="V0w-M5-mgR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="orc-Rr-p47"/>
+                            <constraint firstItem="Nyj-rJ-2W8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cf3-sR-PAL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Nyj-rJ-2W8" secondAttribute="bottom" id="lHA-OY-Jfw"/>
+                            <constraint firstItem="V0w-M5-mgR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lyh-mC-Lqe"/>
+                            <constraint firstItem="V0w-M5-mgR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="prV-Xt-wAi"/>
+                            <constraint firstAttribute="trailing" secondItem="Nyj-rJ-2W8" secondAttribute="trailing" id="wvO-ZZ-3th"/>
+                            <constraint firstItem="Nyj-rJ-2W8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zHe-32-fZT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SEI-qg-RZq"/>
                     <connections>
+                        <outlet property="animationImageView" destination="Nyj-rJ-2W8" id="BHh-5C-hWL"/>
                         <outlet property="recordButton" destination="V0w-M5-mgR" id="FOj-Jx-NCm"/>
                         <segue destination="0FG-Oc-u3N" kind="show" identifier="useRecordingSegue" id="J1D-r4-QOA"/>
                     </connections>
