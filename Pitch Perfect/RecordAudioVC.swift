@@ -51,11 +51,12 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func recordAudio(_ sender: AnyObject) {
         print("Record Button Pressed")
-        animateButtonPress()
+        animateButtonPress(button: recordButton)
         
         if !recording {
             print("Recording")
             loadAnimation()
+            SystemSoundID.playFileNamed(fileName: "RecordSound", withExtenstion: "mp3")
             
             recording = true // Start Recording
             recordButton.setTitle("Stop", for: .normal)
@@ -110,16 +111,6 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
         } else {
             print("Audio recording failed to save")
         }
-    }
-    
-    func animateButtonPress() {
-        // Animated Button Press. Code Complements: nRewik @ StackOverflow
-        UIView.animate(withDuration: 0.2 , animations: {
-            self.recordButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            }, completion: { finish in UIView.animate(withDuration: 0.9){
-                self.recordButton.transform = CGAffineTransform.identity
-                }
-        })
     }
     
     func loadAnimation() {

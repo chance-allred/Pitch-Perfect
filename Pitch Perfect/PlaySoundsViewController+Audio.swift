@@ -67,6 +67,9 @@ extension PlaySoundsVC: AVAudioPlayerDelegate {
 //        }
 //    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        stopAudio() // Stops audioplayback upon transitioning back to record screen.
+    }
     
     func playSound(rate: Float? = nil, pitch: Float? = nil, echo: Bool = false, reverb: Bool = false) {
         
