@@ -56,17 +56,20 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
         if !recording {
             print("Recording")
             loadAnimation()
-            SystemSoundID.playFileNamed(fileName: "RecordSound", withExtenstion: "mp3")
+            SystemSoundID.playFileNamed(fileName: "Bleep", withExtenstion: "mp3")
             
             recording = true // Start Recording
             recordButton.setTitle("Stop", for: .normal)
             recordButton.backgroundColor = UIColor(red:1.00, green:0.15, blue:0.37, alpha:1.00)
             
-            startRecording() // Starts the recording of audio
+            /* Delay recording till sound finished */
+            perform(#selector(startRecording), with: nil, afterDelay: 0.5)
             
         } else {
             print("Stopped")
             stopAnimation()
+            SystemSoundID.playFileNamed(fileName: "BleepRev", withExtenstion: "mp3")
+
             
             recording = false // Stop Recording
             recordButton.setTitle("Record", for: .normal)
