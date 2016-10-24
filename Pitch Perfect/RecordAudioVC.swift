@@ -19,7 +19,6 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var animationImageView: UIImageView!
     
-    
     // MARK: Functions
     
     override func viewDidLoad() {

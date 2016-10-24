@@ -22,6 +22,7 @@ class PlaySoundsVC: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var stopPlaybackButton: UIButton!
+    @IBOutlet weak var verticalStackView: UIStackView!
     
     @IBOutlet weak var snailButton: UIButton!
     @IBOutlet weak var chipmunkButton: UIButton!
@@ -45,7 +46,7 @@ class PlaySoundsVC: UIViewController {
         case .Chipmunk:
             playSound(pitch: 1000)
         case .Vader:
-            playSound(pitch: -1000)
+            playSound(pitch: -800)
         case .Echo:
             playSound(echo: true)
         case .Reverb:
@@ -68,6 +69,23 @@ class PlaySoundsVC: UIViewController {
         // Do any additional setup after loading the view.
         setupStopButton()
         setupAudio() // Had to reconfigure the whole extension due to out-of-date code.
+        
+        /*Observes orientation of screen for button positioning */
+        NotificationCenter.default.addObserver(self, selector: #selector(PlaySoundsVC.screenOrientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    func screenOrientationChanged() {
+        /* Upon landscape orientation, remove the NavBar*/
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
+            print("landscape")
+            self.navigationController?.isNavigationBarHidden = true
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
+            print("Portrait")
+            self.navigationController?.isNavigationBarHidden = false
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,16 +108,5 @@ class PlaySoundsVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

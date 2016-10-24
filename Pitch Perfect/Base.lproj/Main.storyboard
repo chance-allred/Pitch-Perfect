@@ -160,6 +160,7 @@
                         <outlet property="snailButton" destination="MvZ-iW-Kdl" id="nla-Uf-Lhe"/>
                         <outlet property="stopPlaybackButton" destination="Me2-VX-BJb" id="pmW-LW-INj"/>
                         <outlet property="vaderButton" destination="0Od-eT-dPU" id="Zde-4S-avk"/>
+                        <outlet property="verticalStackView" destination="pLh-dT-tPT" id="Zmr-s8-kt6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6d0-i3-cbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
