@@ -125,6 +125,10 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me2-VX-BJb">
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.33936005460000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="269-EB-0Jh"/>
+                                                    <constraint firstAttribute="width" constant="100" id="dxJ-SB-q3p"/>
+                                                </constraints>
                                                 <state key="normal" title="Stop">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -135,10 +139,8 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Me2-VX-BJb" firstAttribute="leading" secondItem="TEi-hi-29L" secondAttribute="leading" constant="71" id="9SH-de-zWK"/>
-                                            <constraint firstItem="Me2-VX-BJb" firstAttribute="top" secondItem="TEi-hi-29L" secondAttribute="top" constant="53" id="PPy-NZ-scp"/>
-                                            <constraint firstAttribute="bottom" secondItem="Me2-VX-BJb" secondAttribute="bottom" constant="53" id="X4t-Rc-our"/>
-                                            <constraint firstAttribute="trailing" secondItem="Me2-VX-BJb" secondAttribute="trailing" constant="72" id="a2p-4R-nEo"/>
+                                            <constraint firstItem="Me2-VX-BJb" firstAttribute="centerX" secondItem="TEi-hi-29L" secondAttribute="centerX" id="Nxo-i5-M4b"/>
+                                            <constraint firstItem="Me2-VX-BJb" firstAttribute="centerY" secondItem="TEi-hi-29L" secondAttribute="centerY" id="rb3-dq-njw"/>
                                         </constraints>
                                     </view>
                                 </subviews>

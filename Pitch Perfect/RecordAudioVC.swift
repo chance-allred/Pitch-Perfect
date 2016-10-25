@@ -28,11 +28,13 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        //self.viewWillAppear(false)
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        //self.viewWillDisappear(false)
+        navigationController?.isNavigationBarHidden = false
     }
     
     func setupRecordButton() {
@@ -117,9 +119,8 @@ class RecordAudioVC: UIViewController, AVAudioRecorderDelegate {
     
     func loadAnimation() {
         var imgListArray = [UIImage]()
-        for countValue in 1...20
-        {
-            
+        
+        for countValue in 1...20 {
             let strImageName : String = "circle_\(countValue).png"
             let image  = UIImage(named:strImageName)
             imgListArray.append(image!)

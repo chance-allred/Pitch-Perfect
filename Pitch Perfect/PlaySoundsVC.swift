@@ -72,21 +72,24 @@ class PlaySoundsVC: UIViewController {
         
         /*Observes orientation of screen for button positioning */
         NotificationCenter.default.addObserver(self, selector: #selector(PlaySoundsVC.screenOrientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
+        // Check the screen orientation upon entering
+        screenOrientationChanged()
     }
     
     func screenOrientationChanged() {
         /* Upon landscape orientation, remove the NavBar*/
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
             print("landscape")
-            self.navigationController?.isNavigationBarHidden = true
+            verticalStackView.axis = .horizontal
         }
         
         if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
             print("Portrait")
-            self.navigationController?.isNavigationBarHidden = false
+            verticalStackView.axis = .vertical
         }
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         configureUI(playState: .NotPlaying) // Sets buttons to NotPlaying state

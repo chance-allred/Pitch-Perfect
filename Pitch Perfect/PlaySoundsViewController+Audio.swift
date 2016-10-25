@@ -41,9 +41,7 @@ extension PlaySoundsVC: AVAudioPlayerDelegate {
         print("Audio has been setup")
     }
     
-    /* Add-on to extension 
-     Plays audio through main speaker rather than head speaker.
-     */
+    /* Add-on to extension. Plays audio through main speaker rather than head speaker. */
     func playbackMainSpeaker()
     {
         do {
@@ -59,13 +57,6 @@ extension PlaySoundsVC: AVAudioPlayerDelegate {
         } catch _ {
         }
     }
-//    func setSessionPlayerOff()
-//    {
-//        do {
-//            try AVAudioSession.sharedInstance().setActive(false)
-//        } catch _ {
-//        }
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         stopAudio() // Stops audioplayback upon transitioning back to record screen.

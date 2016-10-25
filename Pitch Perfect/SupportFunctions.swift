@@ -21,11 +21,14 @@ extension SystemSoundID {
 }
 
 func animateButtonPress(button: UIButton) {
+    // Magic Number Handle
+    let MAX_SCALE_SIZE = 0.9
+    
     // Animated Button Press. Code Complements: nRewik @ StackOverflow
     UIView.animate(withDuration: 0.2 , animations: {
-        button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        button.transform = CGAffineTransform(scaleX: CGFloat(MAX_SCALE_SIZE), y: CGFloat(MAX_SCALE_SIZE))
         }, completion: { finish in UIView.animate(withDuration: 0.2){
             button.transform = CGAffineTransform.identity
-            }
+        }
     })
 }
